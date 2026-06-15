@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EcoTrack - A daily carbon footprint calculator and tracker for UN SDG 13: Climate Action. Track your carbon impact, view metrics, and learn sustainability tips.">
+    <title>EcoTrack - Daily Carbon Footprint Tracker (SDG 13)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- App Container -->
+    <div class="app-container">
+        
+        <!-- Header Section -->
+        <header class="app-header">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="leaf-svg">
+                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 9.8a7 7 0 0 1-9 8.2Z"/>
+                        <path d="M9 22v-4h4"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1>EcoTrack</h1>
+                    <p class="tagline">SDG 13: Climate Action Tracker</p>
+                </div>
+            </div>
+            <div class="theme-status">
+                <span class="badge badge-success">Active Tracking</span>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="app-main">
+            <!-- Left Panel: Calculator Form -->
+            <section class="card calculator-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="16" height="20" x="4" y="2" rx="2"/>
+                            <line x1="8" x2="16" y1="6" y2="6"/>
+                            <line x1="16" x2="16" y1="14" y2="18"/>
+                            <path d="M16 10h.01"/>
+                            <path d="M12 10h.01"/>
+                            <path d="M8 10h.01"/>
+                            <path d="M12 14h.01"/>
+                            <path d="M8 14h.01"/>
+                            <path d="M12 18h.01"/>
+                            <path d="M8 18h.01"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2>Daily Calculator</h2>
+                        <p class="card-subtitle">Log your carbon-producing activities for today</p>
+                    </div>
+                </div>
+
+                <form id="tracker-form" class="tracker-form">
+                    <!-- Date Input -->
+                    <div class="form-group">
+                        <label for="entry-date">
+                            <span class="label-text">Select Date</span>
+                            <span class="label-desc">Defaults to today</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="date" id="entry-date" required>
+                        </div>
+                    </div>
+
+                    <!-- Transportation Sub-section -->
+                    <div class="form-section-title">
+                        <span>Transportation</span>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="car-km">
+                                <span class="label-text">Car Distance</span>
+                                <span class="label-desc">Kilometers driven</span>
+                            </label>
+                            <div class="input-wrapper input-with-suffix">
+                                <input type="number" id="car-km" min="0" step="any" placeholder="0" required value="0">
+                                <span class="suffix">km</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transit-km">
+                                <span class="label-text">Public Transit</span>
+                                <span class="label-desc">Bus, train, subway</span>
+                            </label>
+                            <div class="input-wrapper input-with-suffix">
+                                <input type="number" id="transit-km" min="0" step="any" placeholder="0" required value="0">
+                                <span class="suffix">km</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Energy Sub-section -->
+                    <div class="form-section-title">
+                        <span>Home & Energy</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="energy-hours">
+                            <span class="label-text">Electricity / AC Usage</span>
+                            <span class="label-desc">Hours of active AC or heavy power usage</span>
+                        </label>
+                        <div class="input-wrapper input-with-suffix">
+                            <input type="number" id="energy-hours" min="0" max="24" step="any" placeholder="0" required value="0">
+                            <span class="suffix">hours</span>
+                        </div>
+                    </div>
+
+                    <!-- Diet Sub-section -->
+                    <div class="form-section-title">
+                        <span>Dietary Choice</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="diet-type">
+                            <span class="label-text">Primary Meal Style</span>
+                            <span class="label-desc">General diet profile of your day</span>
+                        </label>
+                        <div class="select-wrapper">
+                            <select id="diet-type" required>
+                                <option value="vegan">Vegan (Low Carbon Impact)</option>
+                                <option value="vegetarian">Vegetarian (Medium-Low Carbon Impact)</option>
+                                <option value="meat-heavy" selected>Meat-heavy (High Carbon Impact)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submit-btn">
+                        <span class="btn-text">Calculate Footprint</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow">
+                            <line x1="5" x2="19" y1="12" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Right Panel: Dashboard Results & Logs -->
+            <div class="dashboard-panel">
+                
+                <!-- Results Card -->
+                <section class="card results-card" id="results-container">
+                    <div class="results-layout">
+                        <!-- Left inside result: Big Metric Display -->
+                        <div class="metric-circle-container">
+                            <div class="metric-outer-ring">
+                                <div class="metric-inner-circle">
+                                    <div class="value-display">
+                                        <span id="current-total">0.0</span>
+                                        <span class="unit">kg CO₂e</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right inside result: Text Details -->
+                        <div class="metric-details">
+                            <h3>Daily Total</h3>
+                            <p class="status-indicator">Enter details to calculate</p>
+                            <p class="carbon-context">The global average target is below <strong class="badge-inline">5.5 kg</strong> per person per day to combat climate change.</p>
+                        </div>
+                    </div>
+
+                    <!-- Small breakdown bars to show where emissions came from -->
+                    <div class="emission-breakdown" id="emission-breakdown" style="display: none;">
+                        <h4 class="breakdown-title">Footprint Breakdown</h4>
+                        <div class="breakdown-bars">
+                            <div class="breakdown-bar-item">
+                                <div class="bar-label">
+                                    <span>Transport</span>
+                                    <span id="breakdown-transport-val">0.0 kg</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill fill-transport" id="breakdown-transport-bar" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                            <div class="breakdown-bar-item">
+                                <div class="bar-label">
+                                    <span>Energy</span>
+                                    <span id="breakdown-energy-val">0.0 kg</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill fill-energy" id="breakdown-energy-bar" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                            <div class="breakdown-bar-item">
+                                <div class="bar-label">
+                                    <span>Diet</span>
+                                    <span id="breakdown-diet-val">0.0 kg</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill fill-diet" id="breakdown-diet-bar" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tip Card -->
+                <section class="card tip-card" id="tip-card" style="display: none;">
+                    <div class="tip-content">
+                        <div class="tip-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tip-lightbulb">
+                                <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
+                                <path d="M9 18h6"/>
+                                <path d="M10 22h4"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="tip-heading">Eco-Tip of the Day</h4>
+                            <p id="tip-text">Calculate your emissions to get a personalized recommendation!</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- History Log Card -->
+                <section class="card history-card">
+                    <div class="card-header history-header">
+                        <div class="header-left">
+                            <div class="card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 8v4l3 3"/>
+                                    <circle cx="12" cy="12" r="10"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h2>Past History Logs</h2>
+                                <p class="card-subtitle">Your tracked carbon footprints over time</p>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary btn-small" id="clear-history-btn">Clear Logs</button>
+                    </div>
+
+                    <div class="history-content">
+                        <!-- Table or List of Entries -->
+                        <div class="entries-wrapper" id="entries-wrapper">
+                            <div class="empty-state" id="empty-state">
+                                <p>No logs found yet. Submit the form above to record your first day!</p>
+                            </div>
+                            <ul class="entries-list" id="entries-list" style="display: none;">
+                                <!-- Dynamically generated list items will go here -->
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2026 EcoTrack. Built for UN Sustainable Development Goal 13: Climate Action.</p>
+            <p class="footer-links">
+                <span>1 km Car = 0.20 kg CO₂</span> &bull; 
+                <span>1 km Transit = 0.05 kg CO₂</span> &bull; 
+                <span>1 hr Electricity = 0.45 kg CO₂</span>
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- Script file -->
+    <script src="script.js"></script>
+</body>
+</html>
