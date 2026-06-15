@@ -31,10 +31,7 @@ The application operates with a modern, glassmorphic UI frontend, backed by a Fl
 Ensure you have Python 3.8+ installed on your system.
 
 ### 2. Environment Configuration
-Create a `.env` file at the root of the project to configure your MongoDB connection string (this file is excluded from Git tracking for security):
-```env
-MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/ecotrack?retryWrites=true&w=majority
-```
+Create a `.env` file at the root of the project to configure your MongoDB connection string (this file is excluded from Git tracking for security).
 
 ### 3. Install Dependencies
 Initialize and activate your virtual environment, then install requirements:
